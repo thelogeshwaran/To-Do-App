@@ -1,6 +1,6 @@
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import {db} from "../firebase"
+import {auth, db} from "../firebase"
 import firebase from "firebase"
 import React, {useState,useEffect} from "react";
 import TodoList from "./TodoList"
@@ -38,13 +38,13 @@ export default function Todo() {
         })
     } 
 
-    console.log(todos)
-
+    // console.log(todos)
+    // const signOut = ()=>auth.signOut();
     return(
     <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
 
             <h1>To-do App</h1>
-
+            {/* <button onClick={()=>signOut()}>SignOut</button> */}
                 <form>
                 <TextField id="standard-basic" label="What's next.."
                 value = {todoInput} 
@@ -59,7 +59,7 @@ export default function Todo() {
             {
 
             todos.map((obj) => (
-            <TodoList id={obj.id} inprogress={obj.inprogress} todo={obj.todo}/>
+            <TodoList key={obj.id}id={obj.id} inprogress={obj.inprogress} todo={obj.todo}/>
                 ) )
 
             }
